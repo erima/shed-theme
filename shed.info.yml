@@ -1,0 +1,10 @@
+name: Shed
+type: theme
+base theme: stable
+description: A Drupal 8 Theme that removes unecessary structural markup to support CSS grid.
+alt text: A CSS Grid theme
+core: 8.x
+package: other
+hidden: false
+libraries:
+  - shed/global-css

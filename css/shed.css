@@ -1,0 +1,247 @@
+@font-face {
+  font-family: "Thunderstorm";
+  src: url(../assets/Thunderstorm.ttf);
+}
+body {
+  font-family: "Noto Sans", helvetica, sans-serif;
+  line-height: 1.5;
+  padding: 2vh 0 40vh 5vw;
+  margin: auto;
+  background-color: hsl(20, 90%, 95%);
+  background:
+      url(../assets/Popsicle.png) repeat 20% center,
+    linear-gradient(
+      hsla(20, 90%, 95%, .9),
+      hsla(300, 90%, 95%, .6)),
+    linear-gradient(
+      180deg,
+      hsla(0, 80%, 50%, .3),
+      hsla(0, 80%, 50%, .0)90%),
+    linear-gradient(
+      45deg,
+      hsla(250, 80%, 50%, .3),
+      hsla(250, 80%, 50%, .0) 90%),
+     linear-gradient(
+      0deg,
+      hsla(350, 80%, 50%, .3),
+      hsla(350, 80%, 50%, .0) 90%);
+  background-attachment: fixed;
+}
+
+a {
+  color: hsl(280, 100%, 30%);
+}
+
+p {
+  margin: 1em 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+blockquote {
+  font-size: 1.5rem;
+  text
+}
+
+footer li a, .layout-sidebar-first li a {
+  background-color: hsla(180, 70%, 40%, .9);
+  color: white;
+  test-decoration: none;
+}
+
+header {
+  margin: 20px 0 0 0;
+}
+
+.dialog-off-canvas-main-canvas>header, .dialog-off-canvas-main-canvas nav, footer, h1 {
+  text-transform: uppercase;
+  font-family: "Ubuntu Mono", monospace;
+}
+
+.dialog-off-canvas-main-canvas>header a, .dialog-off-canvas-main-canvas nav a, footer a, h1 a {
+  text-decoration: none;
+}
+
+.dialog-off-canvas-main-canvas>header {
+  letter-spacing: 1rem;
+  font-family: "Thunderstorm";
+  font-size: 4rem;
+}
+
+.hero {
+  max-height: 30vh;
+  overflow: hidden;
+}
+
+footer h2 {
+  font-size: 1rem;
+  text-decoration: underline;
+  margin: 1em 0;
+}
+
+pre {
+  font-size: .8em;
+  border: 1px solid hsla(0, 0%, 0%, .3);
+  background-color: hsla(0, 100%, 100%, .2);
+}
+
+.tasks ul {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.dialog-off-canvas-main-canvas nav a, footer a {
+  padding: 0.6em;
+}
+
+article h1, article h2 {
+  padding: .5rem .8rem;
+}
+
+article header {}
+
+article header h1 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 1rem 0 0 0;
+  background-color: hsla(335, 70%, 60%, 0.9);
+}
+
+article h2 {
+  color: white;
+  font-size: 1.2rem;
+  background-color: hsla(200, 70%, 60%, 0.9);
+}
+
+article h1 a, article h2 a {
+  color: white;
+}
+
+
+article aside {
+  background-color: hsla(0, 0%, 0%, .2);
+  font-size: 0.7em;
+  padding: 2em;
+}
+
+article ul {
+  list-style-type: circle;
+  margin-left: 1em;
+}
+
+/*hack to disable mysterious empty paragraph tags */
+
+p:empty, figure:empty {
+  display: none;
+}
+
+
+
+@media screen and (min-width: 800px) {
+  body {
+    padding-left: 10vw;
+  }
+  article {
+    max-width: 60vw;
+  }
+  .tasks li {
+    margin: 2em 0;
+  }
+}
+
+@supports (display:grid) {
+  /*
+CSS GRID
+*/
+  .dialog-off-canvas-main-canvas {
+    display: grid;
+    grid-template-columns: 1.5fr 6fr 2fr .1fr;
+    grid-gap: 20px;
+    grid-template-areas: "header header header header" "nav nav nav nav" "main main main ." "footer footer footer footer";
+  }
+  main {
+    grid-area: main;
+  }
+  .dialog-off-canvas-main-canvas>header {
+    grid-area: header;
+  }
+  .dialog-off-canvas-main-canvas nav {
+    grid-area: nav;
+  }
+  .dialog-off-canvas-main-canvas>footer {
+    grid-area: footer;
+  }
+  article {
+    display: grid;
+    grid-gap: 1vw;
+    grid-template-columns: 1fr 2fr 6fr 4fr 2fr;
+  }
+  article>* {
+    grid-column: 2 / end;
+    z-index: 2;
+  }
+  article>header {
+    grid-column: 1 / end;
+  }
+  /* Hack to disable subarticles from getting their own grid. */
+  article article, article article article {
+    display: block;
+    width: 100%;
+  }
+
+  article header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 6fr 4fr 1fr 1fr;
+    grid-template-rows: minmax(max-content, 1em) minmax(10px, 1fr);
+  }
+  header>* {
+    grid-column: 2 / end;
+  }
+  article header h1 {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 1;
+    z-index: 1;
+  }
+  article h2 {
+    grid-column: 1/ end;
+  }
+  article header .hero {
+    grid-row: 1 / end;
+  }
+  /* to add a white background on the grid I need to add markup :( */
+
+  @media screen and (min-width: 800px) {
+    .dialog-off-canvas-main-canvas {
+      grid-template-areas: "header header header header" "nav main main ." "footer main main .";
+    }
+    .dialog-off-canvas-main-canvas>nav, .dialog-off-canvas-main-canvas>footer {
+      grid-column: 1 / span 1;
+    }
+    .tasks ul {
+      flex-direction: column;
+      align-content: flex-start;
+    }
+    header>* {
+      grid-column: 2 / end;
+    }
+    article img {
+      grid-column: 1 / end;
+    }
+    article h2 {
+      grid-column: 1 / span 4;
+    }
+    article p, article ul, article ol {
+      grid-column: 2 / span 3;
+    }
+    article aside {
+      grid-column: end / 3;
+    }
+    article .cp_embed_wrapper {
+      grid-column: 1 / span 4;
+    }
+  }
+}
